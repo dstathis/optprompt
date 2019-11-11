@@ -6,35 +6,31 @@ class OptionPrompterError(Exception):
     pass
 
 
-class OptionPrompter(argparse.ArgumentParser):
+class OptionPrompter():
 
-    def __init__(self, config_files=None, *args, **kwargs):
-        super().__init__(self, *args, **kwargs)
+    def __init__(self, *args, config_files=None, **kwargs):
         self.opts = list()
         self.config_files = list()
         self.config_opts = list()
+        self.argparser = argparse.ArgumentParser(*args, **kwargs)
         if config_files:
             for config_file in config_files:
                 self.config_files.append(config_file)
 
     def add_config_option(self, opt_string, help=None):
-        opt = super().add_argument(self, opt_string, action='store', help=help)
+        opt = self.argparser.add_argument(self, opt_string, action='store', help=help)
         self.config_opts.append(opt)
 
     def add_argument(self, *args, prompt=None, opt_default=None, **kwargs):
-        opt = super().add_argument(*args, **kwargs)
-        if opt.dest == 'help':
-            return
+        opt = self.argparser.add_argument(*args, **kwargs)
         opt.prompt = prompt
         if opt_default is not None and opt.prompt is None:
             opt.default = opt_default
         opt.opt_default = opt_default
-        if opt.opt_default is None and opt.prompt is None:
-            raise OptionPrompterError('Argument must have either an opt_default or a prompt')
         self.opts.append(opt)
 
     def parse_args(self, *args, **kwargs):
-        opts = super().parse_args(*args, **kwargs)
+        opts = self.argparser.parse_args(*args, **kwargs)
         self.parse_configs(opts)
         self.parse_prompt(opts)
         return opts
