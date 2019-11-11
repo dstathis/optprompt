@@ -8,7 +8,7 @@ class OptionPrompterError(Exception):
 
 class OptionPrompter():
 
-    def __init__(self, *args, config_files=None, **kwargs):
+    def __init__(self, *args, config_files=None, section_header='defaults', **kwargs):
         self.opts = list()
         self.config_files = list()
         self.config_opts = list()
@@ -16,6 +16,7 @@ class OptionPrompter():
         if config_files:
             for config_file in config_files:
                 self.config_files.append(config_file)
+        self.section_header = section_header
 
     def add_config_option(self, opt_string, help=None):
         opt = self.argparser.add_argument(self, opt_string, action='store', help=help)
@@ -38,7 +39,7 @@ class OptionPrompter():
     def parse_configs(self, opts):
         if not self.config_files:
             return
-        fileconf = toml.load(self.config_files)
+        fileconf = toml.load(self.config_files)[self.section_header]
         for opt in self.opts:
             fileopt = opt.dest.replace('_', '-')
             if getattr(opts, opt.dest) is None and fileopt in fileconf:
