@@ -11,7 +11,8 @@ setup(
     license='LGPL',
     url='https://github.com/dstathis/optprompt',
     packages=['optprompt'],
-    python_requires='>=3',
+    # 3.2 Required for callable()
+    python_requires='>=3.2',
     long_description=open(
         os.path.join(os.path.dirname(os.path.abspath(__file__)), 'README.md')
     ).read(),
