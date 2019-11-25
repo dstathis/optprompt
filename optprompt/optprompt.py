@@ -57,6 +57,8 @@ class OptionPrompter():
                     break
                 if callable(opt.prompt):
                     opt.prompt = opt.prompt(opts)
+                    if getattr(opts, opt.dest) is not None:
+                        continue
                 setattr(opts, opt.dest,
                         input(f'{opt.prompt} {f"[{opt.opt_default}]" if opt.opt_default is not None else ""}: '))
                 if getattr(opts, opt.dest) == '':
