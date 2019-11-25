@@ -19,7 +19,7 @@ class OptionPrompter():
         self.section_header = section_header
 
     def add_config_option(self, opt_string, help=None):
-        opt = self.argparser.add_argument(self, opt_string, action='store', help=help)
+        opt = self.argparser.add_argument(opt_string, action='store', help=help)
         self.config_opts.append(opt)
 
     def add_argument(self, *args, prompt=None, opt_default=None, **kwargs):
