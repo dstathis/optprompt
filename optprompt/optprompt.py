@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 import argparse
+import os
 import toml
 
 
@@ -9,13 +11,10 @@ class OptionPrompterError(Exception):
 class OptionPrompter():
 
     def __init__(self, *args, config_files=None, section_header='defaults', **kwargs):
-        self.opts = list()
-        self.config_files = list()
-        self.config_opts = list()
+        self.opts = []
+        self.config_files = list(config_files) or []
+        self.config_opts = []
         self.argparser = argparse.ArgumentParser(*args, **kwargs)
-        if config_files:
-            for config_file in config_files:
-                self.config_files.append(config_file)
         self.section_header = section_header
 
     def add_config_option(self, opt_string, help=None):
@@ -37,7 +36,7 @@ class OptionPrompter():
         return opts
 
     def parse_configs(self, opts):
-        if not self.config_files:
+        if not any(os.path.isfile(f) for f in self.config_files):
             return
         fileconf = toml.load(self.config_files)[self.section_header]
         for opt in self.opts:
