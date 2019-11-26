@@ -10,8 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install Tools
-      run: pip install flake8 pytest
+      run: python3 -m pip install flake8 pytest
     - name: Flake8
-      run: flake8
+      run: python3 -m flake8
     - name: Tests
       run: echo "There are no tests yet"
