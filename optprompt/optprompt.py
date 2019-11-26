@@ -21,7 +21,12 @@ class OptionPrompter():
         opt = self.argparser.add_argument(opt_string, action='store', help=help)
         self.config_opts.append(opt)
 
-    def add_argument(self, *args, prompt=None, opt_default=None, **kwargs):
+    def add_argument(self, *args, prompt=None, **kwargs):
+        if 'default' in kwargs:
+            opt_default = kwargs['default']
+            del kwargs['default']
+        else:
+            opt_default = None
         opt = self.argparser.add_argument(*args, **kwargs)
         opt.prompt = prompt
         if opt_default is not None and opt.prompt is None:
