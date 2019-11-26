@@ -1,10 +1,12 @@
 import optprompt
 
+
 def get_classes(opts):
     if opts.edition == '3.5':
         return 'wizard or sorcerer'
     else:
         return 'wizard, sorcerer, or warlock'
+
 
 parser = optprompt.OptionPrompter(config_files=['./example.toml'])
 parser.add_argument('-n', '--name', prompt='What is your name')
