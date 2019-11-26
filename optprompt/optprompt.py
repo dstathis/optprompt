@@ -12,7 +12,7 @@ class OptionPrompter():
 
     def __init__(self, *args, config_files=None, section_header='defaults', **kwargs):
         self.opts = []
-        self.config_files = config_files or []
+        self.config_files = list(config_files) or []
         self.config_opts = []
         self.argparser = argparse.ArgumentParser(*args, **kwargs)
         self.section_header = section_header
