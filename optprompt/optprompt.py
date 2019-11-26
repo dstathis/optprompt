@@ -7,6 +7,7 @@ import toml
 class OptionPrompterError(Exception):
     pass
 
+
 class OptionPrompter():
 
     def __init__(self, *args, config_files=None, section_header='defaults', **kwargs):
