@@ -1,15 +1,19 @@
+import builtins
 import optprompt
 import os
 
 
-def get_classes(opts):
-    if opts.edition == '3.5':
-        return 'wizard or sorcerer'
-    else:
-        return 'wizard, sorcerer, or warlock'
+inputs = []
 
 
-def test_basic_opt():
+def fake_input(prompt_string):
+    return inputs.pop()
+
+
+builtins.input = fake_input
+
+
+def test_basic():
     parser = optprompt.OptionPrompter()
     parser.add_argument('-n', '--name')
     opts = parser.parse_args(['--name', 'Bob'])
@@ -23,3 +27,11 @@ def test_config_file(tmpdir):
     parser.add_argument('-n', '--name')
     opts = parser.parse_args([])
     assert opts.name == 'James'
+
+
+def test_prompt():
+    parser = optprompt.OptionPrompter()
+    parser.add_argument('-n', '--name', prompt='What is your name')
+    inputs.append('Alice')
+    opts = parser.parse_args([])
+    assert opts.name == 'Alice'
