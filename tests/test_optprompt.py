@@ -1,6 +1,5 @@
 import optprompt
 import os
-import pytest
 
 
 def get_classes(opts):
