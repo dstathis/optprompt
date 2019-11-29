@@ -14,4 +14,4 @@ jobs:
     - name: Flake8
       run: python3 -m flake8
     - name: Tests
-      run: echo "There are no tests yet"
+      run: PYTHONPATH=. python3 -m pytest tests
