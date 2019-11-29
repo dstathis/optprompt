@@ -35,3 +35,11 @@ def test_prompt():
     inputs.append('Alice')
     opts = parser.parse_args([])
     assert opts.name == 'Alice'
+
+
+def test_default():
+    parser = optprompt.OptionPrompter()
+    parser.add_argument('-n', '--name', default='Janet')
+    inputs.append('')
+    opts = parser.parse_args([])
+    assert opts.name == 'Janet'
