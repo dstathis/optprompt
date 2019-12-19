@@ -29,8 +29,6 @@ class OptionPrompter():
             opt_default = None
         opt = self.argparser.add_argument(*args, **kwargs)
         opt.prompt = prompt
-        if opt_default is not None and opt.prompt is None:
-            opt.default = opt_default
         opt.opt_default = opt_default
         self.opts.append(opt)
 
