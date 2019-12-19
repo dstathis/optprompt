@@ -28,6 +28,7 @@ def test_config_file(tmpdir):
     opts = parser.parse_args([])
     assert opts.name == 'James'
 
+
 def test_config_file_non_default(tmpdir):
     with open(os.path.join(tmpdir, 'test.conf'), 'w') as f:
         f.write('[defaults]\nname = "James"')
