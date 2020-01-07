@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='optprompt',
-    version='0.3.1',
+    version='0.4.0',
     author='Dylan Stephano-Shachter',
     author_email='dylan@theone.ninja',
     description='A prompting option parser',

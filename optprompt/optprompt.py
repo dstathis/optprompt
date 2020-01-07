@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import argparse
+import getpass
 import os
 import toml
 
@@ -21,7 +22,7 @@ class OptionPrompter():
         opt = self.argparser.add_argument(opt_string, action='store', help=help)
         self.config_opts.append(opt)
 
-    def add_argument(self, *args, prompt=None, **kwargs):
+    def add_argument(self, *args, prompt=None, mask=False, **kwargs):
         if 'default' in kwargs:
             opt_default = kwargs['default']
             del kwargs['default']
@@ -30,6 +31,10 @@ class OptionPrompter():
         opt = self.argparser.add_argument(*args, **kwargs)
         opt.prompt = prompt
         opt.opt_default = opt_default
+        if mask:
+            opt.input = getpass.getpass
+        else:
+            opt.input = input
         self.opts.append(opt)
 
     def parse_args(self, *args, **kwargs):
@@ -62,6 +67,6 @@ class OptionPrompter():
                     if getattr(opts, opt.dest) is not None:
                         continue
                 setattr(opts, opt.dest,
-                        input(f'{opt.prompt} {f"[{opt.opt_default}]" if opt.opt_default is not None else ""}: '))
+                        opt.input(f'{opt.prompt} {f"[{opt.opt_default}]" if opt.opt_default is not None else ""}: '))
                 if getattr(opts, opt.dest) == '':
                     setattr(opts, opt.dest, opt.opt_default)
