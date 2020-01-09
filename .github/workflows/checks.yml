@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install Tools
-      run: python3 -m pip install flake8 isort pytest
+      run: python3 -m pip install flake8 isort pytest setuptools
     - name: Install Dependencies
       run: python3 -m pip install -r requirements.txt
     - name: Flake8
