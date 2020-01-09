@@ -1,7 +1,7 @@
 import builtins
-import optprompt
 import os
 
+import optprompt
 
 inputs = []
 
