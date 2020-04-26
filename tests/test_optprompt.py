@@ -9,6 +9,7 @@ import optprompt
 def mock_input(inputs=None):
     if inputs is None:
         inputs = []
+
     def fake_input(prompt_string):
         return inputs.pop()
     old_input = builtins.input
