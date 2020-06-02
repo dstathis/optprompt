@@ -35,6 +35,7 @@ A prompting option parser
 PYTHONPATH=".:${PYTHONPATH}" pytest-3
 
 %files
+%license LICENSE
 %doc README.md
 %{python3_sitelib}/%{srcname}/
 %{python3_sitelib}/%{srcname}-*.egg-info/
