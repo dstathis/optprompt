@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+
+# Copyright 2024 Dylan Stephano-Shachter
+# See LICENSE file for licensing details
+
 import argparse
 import getpass
 import os
