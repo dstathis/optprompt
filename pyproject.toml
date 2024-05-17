@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "optprompt"
+version = "0.4.0"
+authors = [
+  { name="Dylan Stephano-Shachter", email="dylan@theone.ninja" }
+]
+description = "A prompting option parser"
+readme = "README.md"
+requires-python = ">=3.2"  # Required for callable()
+classifiers = [
+  "Programming Language :: Python",
+  "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+  "Development Status :: 4 - Beta",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+Homepage = "https://github.com/dstathis/optprompt"
+"Bug Tracker" = "https://github.com/dstathis/optprompt/issues"
+
+[tool.setuptools]
+packages = ["optprompt"]
