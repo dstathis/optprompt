@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
+dynamic = ["version"]
 name = "optprompt"
-version = "0.4.0"
 authors = [
   { name="Dylan Stephano-Shachter", email="dylan@theone.ninja" }
 ]
@@ -19,8 +19,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/dstathis/optprompt"
-"Bug Tracker" = "https://github.com/dstathis/optprompt/issues"
+homepage = "https://github.com/dstathis/optprompt"
+issues = "https://github.com/dstathis/optprompt/issues"
 
-[tool.setuptools]
-packages = ["optprompt"]
+[tool.hatch.version]
+path = "optprompt/__init__.py"
